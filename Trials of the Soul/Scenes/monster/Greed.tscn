@@ -1,0 +1,85 @@
+[gd_scene load_steps=18 format=3 uid="uid://c0fenfila2bi3"]
+
+[ext_resource type="Script" path="res://Scripts/Combat/BaseFighter_monster.gd" id="1_vegyc"]
+[ext_resource type="PackedScene" uid="uid://de3mo8qfb1lge" path="res://Scenes/shared/Job.tscn" id="2_jh7iv"]
+[ext_resource type="Resource" uid="uid://25yp1radwglv" path="res://Scripts/monsterJobs/Greed.tres" id="3_s7k0a"]
+[ext_resource type="Resource" uid="uid://l3106fajjq5g" path="res://Scripts/MonsterAttacks/Greed/GrowingGreed.tres" id="4_lt5ne"]
+[ext_resource type="Resource" uid="uid://c1s2p5oprasrc" path="res://Scripts/MonsterAttacks/Greed/HoardedWealth.tres" id="5_pr13n"]
+[ext_resource type="Resource" uid="uid://7u0ic6xg4tn0" path="res://Scripts/MonsterAttacks/Greed/SnatchingClaws.tres" id="6_v8481"]
+[ext_resource type="PackedScene" uid="uid://bab7ai1tdyxnn" path="res://Scenes/player/CharacterSkills.tscn" id="7_fs2mq"]
+[ext_resource type="Resource" uid="uid://2bloo2fueyvg" path="res://Scripts/MonsterGear/GreedClaws.tres" id="8_e7fd3"]
+[ext_resource type="Resource" uid="uid://k1e4qhl6q6mh" path="res://Scripts/Items/standardPotion.tres" id="9_ipy5a"]
+[ext_resource type="PackedScene" uid="uid://cr281y5hhfmm4" path="res://Scenes/player/char_item.tscn" id="10_cccko"]
+[ext_resource type="PackedScene" uid="uid://dv5f586jxrduu" path="res://Scenes/player/Weapons.tscn" id="11_cfhkc"]
+[ext_resource type="Texture2D" uid="uid://dyw5gmlxnqp3q" path="res://resources/monsters/shadow_dragon.png" id="12_rs2xw"]
+[ext_resource type="Script" path="res://Scripts/MonsterDrops/GreedDrops.gd" id="13_txg50"]
+[ext_resource type="Script" path="res://Scripts/Combat/Actions.gd" id="14_urk8m"]
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_dk5vd"]
+bg_color = Color(0.262745, 0.635294, 0.878431, 1)
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_4vmmf"]
+bg_color = Color(0.929412, 0, 0.109804, 1)
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_bq56t"]
+bg_color = Color(0, 0.917647, 0, 1)
+
+[node name="Greed" type="Node2D"]
+script = ExtResource("1_vegyc")
+monName = "Shadow of Greed"
+
+[node name="Job" parent="." instance=ExtResource("2_jh7iv")]
+startingStats = ExtResource("3_s7k0a")
+StartingSkills = [ExtResource("6_v8481"), ExtResource("5_pr13n"), ExtResource("4_lt5ne")]
+characterSkillScene = ExtResource("7_fs2mq")
+equipedWep = ExtResource("8_e7fd3")
+equipedItem = ExtResource("9_ipy5a")
+itemScene = ExtResource("10_cccko")
+
+[node name="CharacterSkill" parent="." instance=ExtResource("7_fs2mq")]
+
+[node name="equips" parent="." instance=ExtResource("11_cfhkc")]
+
+[node name="AbominationLarge" type="Sprite2D" parent="."]
+position = Vector2(72, -63)
+scale = Vector2(4.375, 4.0625)
+texture = ExtResource("12_rs2xw")
+
+[node name="Bars" type="MenuBar" parent="."]
+offset_left = 19.0
+offset_top = -180.0
+offset_right = 113.0
+offset_bottom = -140.0
+
+[node name="MP" type="ProgressBar" parent="Bars"]
+custom_minimum_size = Vector2(0, 5)
+layout_mode = 0
+offset_left = 15.0
+offset_top = 33.0
+offset_right = 78.0
+offset_bottom = 38.0
+theme_override_styles/fill = SubResource("StyleBoxFlat_dk5vd")
+value = 100.0
+show_percentage = false
+
+[node name="HP" type="ProgressBar" parent="Bars"]
+custom_minimum_size = Vector2(0, 5)
+layout_mode = 0
+offset_left = -19.0
+offset_top = 30.0
+offset_right = 126.0
+offset_bottom = 43.0
+theme_override_styles/background = SubResource("StyleBoxFlat_4vmmf")
+theme_override_styles/fill = SubResource("StyleBoxFlat_bq56t")
+max_value = 300.0
+value = 300.0
+show_percentage = false
+
+[node name="Drops" type="Node" parent="."]
+script = ExtResource("13_txg50")
+
+[node name="Actions" type="Node" parent="."]
+script = ExtResource("14_urk8m")
+skill_action_scene = ExtResource("7_fs2mq")
+
+[connection signal="died" from="." to="Drops" method="_on_reaper_died"]

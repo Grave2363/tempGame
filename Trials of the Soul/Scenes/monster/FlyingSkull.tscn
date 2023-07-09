@@ -1,0 +1,83 @@
+[gd_scene load_steps=17 format=3 uid="uid://cj0dto3blil43"]
+
+[ext_resource type="Script" path="res://Scripts/Combat/BaseFighter_monster.gd" id="1_7bknk"]
+[ext_resource type="PackedScene" uid="uid://de3mo8qfb1lge" path="res://Scenes/shared/Job.tscn" id="2_oagro"]
+[ext_resource type="Resource" uid="uid://bsvpc2rmm6reo" path="res://Scripts/monsterJobs/FlyingSkull.tres" id="3_4x3yq"]
+[ext_resource type="Resource" uid="uid://drvwwue8dlmpf" path="res://Scripts/MonsterAttacks/Skeletons/FlyingSkull/ViciousMockery.tres" id="4_0vmcb"]
+[ext_resource type="Resource" uid="uid://bilwykbd506qu" path="res://Scripts/MonsterAttacks/Skeletons/FlyingSkull/Headbut.tres" id="5_70p1c"]
+[ext_resource type="PackedScene" uid="uid://bab7ai1tdyxnn" path="res://Scenes/player/CharacterSkills.tscn" id="6_t6qg4"]
+[ext_resource type="Resource" uid="uid://cofk61p57652h" path="res://Scripts/MonsterGear/BoneWep.tres" id="7_8a3qs"]
+[ext_resource type="Resource" uid="uid://k1e4qhl6q6mh" path="res://Scripts/Items/standardPotion.tres" id="8_mm3nh"]
+[ext_resource type="PackedScene" uid="uid://cr281y5hhfmm4" path="res://Scenes/player/char_item.tscn" id="9_m8ck2"]
+[ext_resource type="PackedScene" uid="uid://dv5f586jxrduu" path="res://Scenes/player/Weapons.tscn" id="10_cboq7"]
+[ext_resource type="Texture2D" uid="uid://c0udvorw3vbf5" path="res://resources/monsters/flying_skull.png" id="11_ibam6"]
+[ext_resource type="Script" path="res://Scripts/MonsterDrops/SkeletonADrops.gd" id="12_ul32o"]
+[ext_resource type="Script" path="res://Scripts/Combat/Actions.gd" id="13_qxbpx"]
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_dk5vd"]
+bg_color = Color(0.262745, 0.635294, 0.878431, 1)
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_4vmmf"]
+bg_color = Color(0.929412, 0, 0.109804, 1)
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_bq56t"]
+bg_color = Color(0, 0.917647, 0, 1)
+
+[node name="FlyingSkull" type="Node2D"]
+script = ExtResource("1_7bknk")
+monName = "Slime"
+
+[node name="Job" parent="." instance=ExtResource("2_oagro")]
+startingStats = ExtResource("3_4x3yq")
+StartingSkills = [ExtResource("4_0vmcb"), ExtResource("5_70p1c")]
+characterSkillScene = ExtResource("6_t6qg4")
+equipedWep = ExtResource("7_8a3qs")
+equipedItem = ExtResource("8_mm3nh")
+itemScene = ExtResource("9_m8ck2")
+
+[node name="CharacterSkill" parent="." instance=ExtResource("6_t6qg4")]
+
+[node name="equips" parent="." instance=ExtResource("10_cboq7")]
+
+[node name="AbominationLarge" type="Sprite2D" parent="."]
+position = Vector2(38, -34)
+scale = Vector2(2.25, 2.25)
+texture = ExtResource("11_ibam6")
+
+[node name="Bars" type="MenuBar" parent="."]
+offset_top = -106.0
+offset_right = 94.0
+offset_bottom = -66.0
+
+[node name="MP" type="ProgressBar" parent="Bars"]
+custom_minimum_size = Vector2(0, 5)
+layout_mode = 0
+offset_left = 4.0
+offset_top = 21.0
+offset_right = 67.0
+offset_bottom = 26.0
+theme_override_styles/fill = SubResource("StyleBoxFlat_dk5vd")
+value = 100.0
+show_percentage = false
+
+[node name="HP" type="ProgressBar" parent="Bars"]
+custom_minimum_size = Vector2(0, 5)
+layout_mode = 0
+offset_left = 2.0
+offset_top = 21.0
+offset_right = 68.0
+offset_bottom = 26.0
+theme_override_styles/background = SubResource("StyleBoxFlat_4vmmf")
+theme_override_styles/fill = SubResource("StyleBoxFlat_bq56t")
+max_value = 30.0
+value = 30.0
+show_percentage = false
+
+[node name="Drops" type="Node" parent="."]
+script = ExtResource("12_ul32o")
+
+[node name="Actions" type="Node" parent="."]
+script = ExtResource("13_qxbpx")
+skill_action_scene = ExtResource("6_t6qg4")
+
+[connection signal="died" from="." to="Drops" method="_on_skeleton_naga_died"]

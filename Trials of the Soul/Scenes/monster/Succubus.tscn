@@ -1,0 +1,83 @@
+[gd_scene load_steps=17 format=3 uid="uid://fq1ectpaxvbw"]
+
+[ext_resource type="Script" path="res://Scripts/Combat/BaseFighter_monster.gd" id="1_vwogd"]
+[ext_resource type="PackedScene" uid="uid://de3mo8qfb1lge" path="res://Scenes/shared/Job.tscn" id="2_n0c57"]
+[ext_resource type="Resource" uid="uid://bt25igi6gdc8c" path="res://Scripts/monsterJobs/Succubus.tres" id="3_khoqt"]
+[ext_resource type="Resource" uid="uid://d0eccab14s6br" path="res://Scripts/MonsterAttacks/Succubus/AbyssalEmbrace.tres" id="4_8atfp"]
+[ext_resource type="Resource" uid="uid://bo3okjwlvxw0y" path="res://Scripts/MonsterAttacks/Succubus/VitalityDrain.tres" id="5_bme63"]
+[ext_resource type="PackedScene" uid="uid://bab7ai1tdyxnn" path="res://Scenes/player/CharacterSkills.tscn" id="6_57s7k"]
+[ext_resource type="Resource" uid="uid://lyurblnu7d2e" path="res://Scripts/MonsterGear/DemonessClaws.tres" id="7_k0tmt"]
+[ext_resource type="Resource" uid="uid://k1e4qhl6q6mh" path="res://Scripts/Items/standardPotion.tres" id="8_741t2"]
+[ext_resource type="PackedScene" uid="uid://cr281y5hhfmm4" path="res://Scenes/player/char_item.tscn" id="9_ukf4j"]
+[ext_resource type="PackedScene" uid="uid://dv5f586jxrduu" path="res://Scenes/player/Weapons.tscn" id="10_ebwoi"]
+[ext_resource type="Texture2D" uid="uid://cpnffurs7cigd" path="res://resources/npcs/Succubus.png" id="11_j53cn"]
+[ext_resource type="Script" path="res://Scripts/MonsterDrops/MummyGuardDrops.gd" id="12_4hemo"]
+[ext_resource type="Script" path="res://Scripts/Combat/Actions.gd" id="13_mnex5"]
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_dk5vd"]
+bg_color = Color(0.262745, 0.635294, 0.878431, 1)
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_4vmmf"]
+bg_color = Color(0.929412, 0, 0.109804, 1)
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_bq56t"]
+bg_color = Color(0, 0.917647, 0, 1)
+
+[node name="Succubus" type="Node2D"]
+script = ExtResource("1_vwogd")
+monName = "Succubus"
+
+[node name="Job" parent="." instance=ExtResource("2_n0c57")]
+startingStats = ExtResource("3_khoqt")
+StartingSkills = [ExtResource("4_8atfp"), ExtResource("5_bme63")]
+characterSkillScene = ExtResource("6_57s7k")
+equipedWep = ExtResource("7_k0tmt")
+equipedItem = ExtResource("8_741t2")
+itemScene = ExtResource("9_ukf4j")
+
+[node name="CharacterSkill" parent="." instance=ExtResource("6_57s7k")]
+
+[node name="equips" parent="." instance=ExtResource("10_ebwoi")]
+
+[node name="AbominationLarge" type="Sprite2D" parent="."]
+position = Vector2(50.5, -50.5)
+scale = Vector2(3.03125, 3.28125)
+texture = ExtResource("11_j53cn")
+
+[node name="Bars" type="MenuBar" parent="."]
+offset_top = -106.0
+offset_right = 94.0
+offset_bottom = -66.0
+
+[node name="MP" type="ProgressBar" parent="Bars"]
+custom_minimum_size = Vector2(0, 5)
+layout_mode = 0
+offset_left = 12.0
+offset_top = -2.0
+offset_right = 75.0
+offset_bottom = 3.0
+theme_override_styles/fill = SubResource("StyleBoxFlat_dk5vd")
+value = 100.0
+show_percentage = false
+
+[node name="HP" type="ProgressBar" parent="Bars"]
+custom_minimum_size = Vector2(0, 5)
+layout_mode = 0
+offset_left = 10.0
+offset_top = -2.0
+offset_right = 76.0
+offset_bottom = 3.0
+theme_override_styles/background = SubResource("StyleBoxFlat_4vmmf")
+theme_override_styles/fill = SubResource("StyleBoxFlat_bq56t")
+max_value = 30.0
+value = 30.0
+show_percentage = false
+
+[node name="Drops" type="Node" parent="."]
+script = ExtResource("12_4hemo")
+
+[node name="Actions" type="Node" parent="."]
+script = ExtResource("13_mnex5")
+skill_action_scene = ExtResource("6_57s7k")
+
+[connection signal="died" from="." to="Drops" method="_on_mummy_guard_died"]

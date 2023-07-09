@@ -1,0 +1,74 @@
+[gd_scene load_steps=5 format=3 uid="uid://pkygw38ev1c7"]
+
+[ext_resource type="Script" path="res://Scripts/mainMenu.gd" id="1_7java"]
+[ext_resource type="Script" path="res://Scripts/SceneManager.gd" id="1_q5xo3"]
+[ext_resource type="PackedScene" uid="uid://dgr22s05q47uk" path="res://Scenes/reusables/fade_to_black.tscn" id="2_kiqxo"]
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_w5kc8"]
+bg_color = Color(0, 0, 0, 1)
+
+[node name="SceneManager" type="Node"]
+script = ExtResource("1_q5xo3")
+
+[node name="CurScene" type="Node" parent="."]
+
+[node name="MainMenu" type="Node2D" parent="CurScene"]
+script = ExtResource("1_7java")
+
+[node name="Camera2D" type="Camera2D" parent="CurScene/MainMenu"]
+zoom = Vector2(3, 3)
+
+[node name="Panel" type="Panel" parent="CurScene/MainMenu/Camera2D"]
+offset_left = -201.0
+offset_top = -114.0
+offset_right = 197.0
+offset_bottom = 109.0
+theme_override_styles/panel = SubResource("StyleBoxFlat_w5kc8")
+
+[node name="Label" type="Label" parent="CurScene/MainMenu/Camera2D/Panel"]
+layout_mode = 0
+offset_left = 118.0
+offset_top = 62.0
+offset_right = 281.0
+offset_bottom = 88.0
+text = "Game Name Pending
+"
+
+[node name="NewGame" type="Button" parent="CurScene/MainMenu/Camera2D"]
+offset_left = -169.0
+offset_top = 45.0
+offset_right = -71.0
+offset_bottom = 90.0
+text = "New Game"
+
+[node name="Load" type="Button" parent="CurScene/MainMenu/Camera2D"]
+offset_left = -169.0
+offset_top = -4.0
+offset_right = -71.0
+offset_bottom = 41.0
+text = "Load Game"
+
+[node name="Options" type="Button" parent="CurScene/MainMenu/Camera2D"]
+offset_left = 75.0
+offset_top = -2.0
+offset_right = 173.0
+offset_bottom = 43.0
+text = "Options
+"
+
+[node name="Quit" type="Button" parent="CurScene/MainMenu/Camera2D"]
+offset_left = 74.0
+offset_top = 48.0
+offset_right = 173.0
+offset_bottom = 93.0
+text = "Close Game
+"
+
+[node name="FadeToBlack" parent="." instance=ExtResource("2_kiqxo")]
+visible = false
+
+[connection signal="pressed" from="CurScene/MainMenu/Camera2D/NewGame" to="CurScene/MainMenu" method="_on_new_game_pressed"]
+[connection signal="pressed" from="CurScene/MainMenu/Camera2D/Load" to="CurScene/MainMenu" method="_on_load_pressed"]
+[connection signal="pressed" from="CurScene/MainMenu/Camera2D/Options" to="CurScene/MainMenu" method="_on_options_pressed"]
+[connection signal="pressed" from="CurScene/MainMenu/Camera2D/Quit" to="CurScene/MainMenu" method="_on_quit_pressed"]
+[connection signal="hideMe" from="FadeToBlack" to="." method="_on_fade_to_black_hide_me"]

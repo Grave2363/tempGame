@@ -1,0 +1,83 @@
+[gd_scene load_steps=17 format=3 uid="uid://bcrnb3a63nvsk"]
+
+[ext_resource type="Script" path="res://Scripts/Combat/BaseFighter_monster.gd" id="1_npt65"]
+[ext_resource type="Resource" uid="uid://6skvg06r5ppm" path="res://Scripts/monsterJobs/Slime.tres" id="2_8su22"]
+[ext_resource type="PackedScene" uid="uid://de3mo8qfb1lge" path="res://Scenes/shared/Job.tscn" id="2_bibdp"]
+[ext_resource type="PackedScene" uid="uid://bab7ai1tdyxnn" path="res://Scenes/player/CharacterSkills.tscn" id="3_2wxdi"]
+[ext_resource type="Resource" uid="uid://cf0kp2ypgg34s" path="res://Scripts/MonsterAttacks/Slime/SlimeShot.tres" id="4_q8egh"]
+[ext_resource type="PackedScene" uid="uid://dv5f586jxrduu" path="res://Scenes/player/Weapons.tscn" id="4_qvo0s"]
+[ext_resource type="Resource" uid="uid://drltvw3arfndx" path="res://Scripts/MonsterAttacks/Slime/SlimyRegen.tres" id="5_q6rws"]
+[ext_resource type="Resource" uid="uid://c7pyk7r2yokl" path="res://Scripts/MonsterGear/SlimeWep.tres" id="5_qgt73"]
+[ext_resource type="Resource" uid="uid://k1e4qhl6q6mh" path="res://Scripts/Items/standardPotion.tres" id="8_gcbor"]
+[ext_resource type="PackedScene" uid="uid://cr281y5hhfmm4" path="res://Scenes/player/char_item.tscn" id="9_n555m"]
+[ext_resource type="Texture2D" uid="uid://m1x8hmf2khf7" path="res://resources/monsters/abomination_large.png" id="11_6yv0o"]
+[ext_resource type="Script" path="res://Scripts/MonsterDrops/SlimeDrops.gd" id="12_x4nqd"]
+[ext_resource type="Script" path="res://Scripts/Combat/Actions.gd" id="13_q1dcx"]
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_dk5vd"]
+bg_color = Color(0.262745, 0.635294, 0.878431, 1)
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_4vmmf"]
+bg_color = Color(0.929412, 0, 0.109804, 1)
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_bq56t"]
+bg_color = Color(0, 0.917647, 0, 1)
+
+[node name="Slime" type="Node2D"]
+script = ExtResource("1_npt65")
+monName = "Slime"
+
+[node name="Job" parent="." instance=ExtResource("2_bibdp")]
+startingStats = ExtResource("2_8su22")
+StartingSkills = [ExtResource("4_q8egh"), ExtResource("5_q6rws")]
+characterSkillScene = ExtResource("3_2wxdi")
+equipedWep = ExtResource("5_qgt73")
+equipedItem = ExtResource("8_gcbor")
+itemScene = ExtResource("9_n555m")
+
+[node name="CharacterSkill" parent="." instance=ExtResource("3_2wxdi")]
+
+[node name="equips" parent="." instance=ExtResource("4_qvo0s")]
+
+[node name="AbominationLarge" type="Sprite2D" parent="."]
+position = Vector2(38, -34)
+scale = Vector2(2.25, 2.25)
+texture = ExtResource("11_6yv0o")
+
+[node name="Bars" type="MenuBar" parent="."]
+offset_top = -106.0
+offset_right = 94.0
+offset_bottom = -66.0
+
+[node name="MP" type="ProgressBar" parent="Bars"]
+custom_minimum_size = Vector2(0, 5)
+layout_mode = 0
+offset_left = 4.0
+offset_top = 21.0
+offset_right = 67.0
+offset_bottom = 26.0
+theme_override_styles/fill = SubResource("StyleBoxFlat_dk5vd")
+value = 100.0
+show_percentage = false
+
+[node name="HP" type="ProgressBar" parent="Bars"]
+custom_minimum_size = Vector2(0, 5)
+layout_mode = 0
+offset_left = 2.0
+offset_top = 21.0
+offset_right = 68.0
+offset_bottom = 26.0
+theme_override_styles/background = SubResource("StyleBoxFlat_4vmmf")
+theme_override_styles/fill = SubResource("StyleBoxFlat_bq56t")
+max_value = 30.0
+value = 30.0
+show_percentage = false
+
+[node name="Drops" type="Node" parent="."]
+script = ExtResource("12_x4nqd")
+
+[node name="Actions" type="Node" parent="."]
+script = ExtResource("13_q1dcx")
+skill_action_scene = ExtResource("3_2wxdi")
+
+[connection signal="died" from="." to="Drops" method="_on_slime_died"]

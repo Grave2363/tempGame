@@ -1,0 +1,216 @@
+## Beach / Desert
+
+"[LPC] Beach/Desert" by bluecarrot16, Guillaume Lecollinet, Johann Charlot, cynicmusic, Surt, vk, Yar, Michele Bucelli (Buch), Richard Kettering (Jetrel), Zachariah Husiar (Zabin), Hyptosis, Lanea Zimmerman (Sharm), Frode Lindeijer (Modanung).
+CC-BY-SA 3.0
+
+BrowserQuest Sprites and Tiles
+Guillaume Lecollinet
+CC-BY-SA 3.0
+http://opengameart.org/content/browserquest-sprites-and-tiles
+
+Shoot'em up graphic kit
+Johann Charlot
+CC-BY-SA 3.0 / GPL 3.0
+https://opengameart.org/content/shootem-up-graphic-kit
+
+Pixelsphere 32x32 Tileset + Grass + Trees
+cynicmusic
+CC0
+http://opengameart.org/content/pixelsphere-32x32-tileset-grass-trees
+
+trees
+Surt, vk
+CC0
+https://opengameart.org/content/trees-1
+
+Isometric 64x64 Outside Tileset
+Yar
+CC-BY 3.0
+https://opengameart.org/content/isometric-64x64-outside-tileset
+
+Tuxemon tileset
+Michele Bucelli (Buch)
+CC-BY-SA 3.0
+https://opengameart.org/content/tuxemon-tileset
+
+Lots of trees and plants from OGA (DB32) tilesets pack 1
+Richard Kettering (Jetrel), Zachariah Husiar (Zabin), Hyptosis, Surt
+CC0
+https://opengameart.org/content/lots-of-trees-and-plants-from-oga-db32-tilesets-pack-1
+
+Bone Planet
+Hyptosis
+CC0
+https://opengameart.org/content/bone-planet
+
+Whispers of Avalon: Desert Tileset
+Leonard Pabin, Ali-G
+CC-BY 3.0 / GPL 3.0 / GPL 2.0
+https://opengameart.org/content/whispers-of-avalon-desert-tileset
+
+[LPC] Arabic Elements
+Lanea Zimmerman (Sharm), William Thompson
+CC-BY 3.0 / GPL 3.0 / GPL 2.0 / OGA-BY 3.0 
+https://opengameart.org/content/lpc-arabic-elements
+
+Lots of free 2d tiles and sprites by Hyptosis
+Hyptosis, Zachariah Husiar (Zabin)
+CC-BY 3.0
+https://opengameart.org/content/lots-of-free-2d-tiles-and-sprites-by-hyptosis
+
+The Mana World, Evol Online accessories
+Evol Online <http://evolonline.org>
+graphics/tilesets/accessory.png
+Alige, Coolkid782, Hal9000, Len, Reid
+CC BY-SA 3.0 <https://github.com/themanaworld/client-data/blob/6272ecd9ac8fa2b3bfd529697180c4ef731b9a32/LICENSE>
+https://github.com/themanaworld/client-data/blob/6f7a0784ad2a992c3d7e026b5df05bdef11fc292/graphics/tilesets/accessory.png
+
+The Mana World, Evol Online Palm trees
+Evol Online <http://evolonline.org>
+graphics/tilesets/tree-x3x4.png
+Frode Lindeijer (Modanung) (big palm tree), and Leonard Pabin (small palm tree)
+CC-BY 3.0 / GPL 3.0 / GPL 2.0 <https://github.com/themanaworld/client-data/blob/8a466c26e3c551d6057b20ebfe3ebceda7988b18/LICENSE#L446>
+https://faq.tuxfamily.org/Game:EvolOnline/En
+https://github.com/themanaworld/client-data/blob/8a466c26e3c551d6057b20ebfe3ebceda7988b18/graphics/tilesets/tree-x3x4.png
+
+ZRPG Beach
+Zachariah Husiar (Zabin), Richard Kettering (Jetrel), Lanea Zimmerman (Sharm), Hyptosis, Frode Lindeijer (Modanung), Leonard Pabin, and others
+https://opengameart.org/content/zrpg-beach
+
+TMW Cactus
+Frode Lindeijer (Modanung)
+CC-BY-SA.3.0 / GPLv2 (see also <https://opengameart.org/comment/65559#comment-65559>)
+http://pixeljoint.com/pixelart/13549.htm
+
+
+"[LPC] Desert Ruins" by bluecarrot16. Commissioned by Pierre Vigier (pvigier). Licenses: OGA-BY 3.0+, CC-BY 3.0+, GPL 2.0+. http://opengameart.org/content/lpc-desert-ruins
+
+
+Ruined buildings---an ancient city, forgotten temple, or forboding dungeon---in the style of the Liberated Pixel Cup. Loosely inspired by ancient Egyptian and ancient Greek architecture.
+
+Many types of structures can be built with these modular tiles. Check out the Tiled map "desert-ruins-preview.tmx" to see how the preview image was constructed. Some tips:
+- The wall tiles at the top of the image are intended for interiors, but you can use them for exterior buildings too. Pieces in the top-right can be used to transition between the different styles of wall
+- Add the slabs in the top-middle over top of any walls (interior or exterior)
+- Ceiling trim (right side) uses the same layout as https://opengameart.org/content/lpc-walls
+- Pyramids work best when the height is a multiple of two. This applies to both the smooth-walled pyramids and the stairstep pyramids (see building in the bottom-right of the preview)
+- Statues are modular--freely combine the different partially-ruined heads and bodies.
+
+See also companion piece: http://opengameart.org/content/lpc-jungle-ruins
+
+Preview uses tiles from "[LPC] Sand+Rock Alt Colors" by William.Thompsonj and Daniel Eddeland, CC-BY-SA 3.0, GPL 3.0 <https://opengameart.org/content/lpc-sandrock-alt-colors> <https://opengameart.org/content/lpc-farming-tilesets-magic-animations-and-ui-elements>
+
+
+= Wooden floor(CC-BY-SA) =
+ * Horizontal wooden floor by Lanea Zimmerman (AKA Sharm)
+ * Horizontal wooden floor with hole by Lanea Zimmerman (AKA Sharm) and Tuomo Untinen
+ * Vertical wooden floor by Tuomo Untinen
+ * Vertical wooden floor with hole by Tuomo Untinen
+= Wooden wall topping (CC-BY-SA) =
+ * Tuomo Untinen
+= Pile of barrels =
+ * Based LPC base tiles by Lanea Zimmerman (AKA Sharm)
+= Decorational stuff (CC-BY-SA) =
+ * Green bottle
+ * Wine glass and bottle
+ * Hanging sacks
+ * Wall mounted rope and ropes
+ * Wall mounted swords
+ * Wall mounted kite shield
+ * Wall hole
+ By Tuomo Untinen
+ * Small sack from LPC farming tileset by Daniel Eddeland (http://opengameart.org/content/lpc- farming-tilesets-magic-animations-and-ui-elements) 
+ * Purple bottles and gray lantern from Hyptosis Mage city
+ * Green and blue bottle by Tuomo Untinen
+= Wall clock (CC-BY-SA) =
+ * Lanea Zimmerman AKA Sharm
+ * Tuomo Untinen (Scaled down and animation)
+= Stone floor (CC-BY-SA)= 
+ * Tuomo Untinen 
+= Cobble stone floor (CC-BY-SA)= 
+ * Based on LPC base tileset by Lanea Zimmerman (AKA Sharm)
+= Cabinets and kitchen stuff including metal stove(CC-BY-SA) =
+ * Based on LPC base tileset by Lanea Zimmerman (AKA Sharm)
+ * Cutboard is made by Hyptosis
+ * Sacks based on LPC farming tileset by Daniel Eddeland (http://opengameart.org/content/lpc- farming-tilesets-magic-animations-and-ui-elements) 
+ * Spears by Tuomo Untinen
+ * Vertical chest by Tuomo Untinen based on LPC base tiles Lanea Zimmerman (AKA Sharm)
+Manuel Riecke (AKA MrBeast)
+= Skull (CC-BY-SA) =
+ * http://opengameart.org/content/lpc-dungeon-elements
+ * Graphical artist Lanea Zimmerman AKA Sharm
+ * Contributor William Thompson
+= pile sacks =
+ * LPC farming tileset by Daniel Eddeland (http://opengameart.org/content/lpc- farming-tilesets-magic-animations-and-ui-elements) 
+= Pile of papers(CC-BY-SA) = 
+ * Based on caeles papers
+= Armor shelves(CC-BY-SA) =
+ * Based on LPC base tileset by Lanea Zimmerman (AKA Sharm)
+ * Armors by: Adapted by Matthew Krohn from art created by Johannes Sjölund
+= Table lamp =
+  * Tuomo Untinen
+= Distiller =
+ * Table is from LPC base tileset by Lanea Zimmerman (AKA Sharm)
+ * Distiller by Tuomo Untinen
+= Fireplace =
+ * Tuomo Untinen
+ * Inspired by Lanea Zimmerman (AKA Sharm) Fireplace
+
+town_rpg_pack Artwork created by Luis Zuno (@ansimuz)
+
+
+Castle interior and stairs by Lanea Zimmerman
+
+Desert Background by PWL
+
+"LPC Wooden Furniture" by bluecarrot16, Baŝto, Lanea Zimmerman (Sharm), William Thompson, Tuomo Untinen (Reemax), Janna/Lilius/Jannax. Please link back to https://opengameart.org/content/lpc-wooden-furniture . see CREDITS-*.txt. All information in this file must be included.
+
+
+Liberated Pixel Cup (LPC) Base Assets (sprites & map tiles)
+Lanea Zimmerman (Sharm)
+CC-BY-SA 3.0 / GPL 3.0
+http://opengameart.org/content/liberated-pixel-cup-lpc-base-assets-sprites-map-tiles
+
+LPC: Modified base tiles
+Lanea Zimmerman (Sharm), William Thompson
+CC-BY 3.0 / CC-BY-SA 3.0 / GPL 3.0 / OGA-BY 3.0
+http://opengameart.org/content/lpc-modified-base-tiles
+
+[LPC] House interior and decorations
+Tuomo Untinen (Reemax)
+CC-BY-SA 3.0 / GPL 3.0 / GPL 2.0
+http://opengameart.org/content/lpc-house-interior-and-decorations
+
+Flowers, buildings and boxes; Interior wooden tiles; some old castle stuff
+CC-BY-SA 3.0 / GPL 3.0
+Guido Bos
+https://opengameart.org/content/flowers-buildings-and-boxes-interior-wooden-tiles-some-old-castle-stuff
+
+[LPC] Dungeon Elements
+Lanea Zimmerman (Sharm), William.Thompsonj
+CC-BY 3.0 / GPL 3.0 / GPL 2.0 / OGA-BY 3.0
+https://opengameart.org/content/lpc-dungeon-elements
+
+LPC: Interior Castle Tiles
+Lanea Zimmerman (Sharm)
+CC-BY 3.0 / CC-BY-SA 3.0 / GPL 3.0 / OGA-BY 3.0
+https://opengameart.org/content/lpc-interior-castle-tiles
+
+Home Objects
+Janna/Lilius/Jannax
+CC0
+https://opengameart.org/content/home-objects
+
+[LPC] Clock Animation
+Lanea Zimmerman (Sharm), William.Thompsonj
+CC-BY 3.0 / GPL 3.0
+https://opengameart.org/content/lpc-clock-animation
+
+Many town and Dungon Tiles by Hyptosis https://opengameart.org/content/lots-of-free-2d-tiles-and-sprites-by-hyptosis
+
+Cave Tiles by MrBeast https://opengameart.org/content/cave-tileset-0
+
+Town and ground tiles by Zabin, Daneeklu, Jetrel, Hyptosis, Redshrike, Bertram  https://opengameart.org/content/rpg-tiles-cobble-stone-paths-town-objects
+
+Exterior Castle Tiles by Zabin, Hyptosis, and Danial Cook. https://opengameart.org/content/castle-tiles-for-rpgs
+
+Dungon Crawl Soup tiles and sprites by Chris Hamons  https://opengameart.org/content/dungeon-crawl-32x32-tiles

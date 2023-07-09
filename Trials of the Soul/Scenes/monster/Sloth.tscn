@@ -1,0 +1,85 @@
+[gd_scene load_steps=18 format=3 uid="uid://d15bephbloyqr"]
+
+[ext_resource type="Script" path="res://Scripts/Combat/BaseFighter_monster.gd" id="1_w3x7k"]
+[ext_resource type="PackedScene" uid="uid://de3mo8qfb1lge" path="res://Scenes/shared/Job.tscn" id="2_2ik1m"]
+[ext_resource type="Resource" uid="uid://rsemsmypktc" path="res://Scripts/monsterJobs/Sloth.tres" id="3_etx0q"]
+[ext_resource type="Resource" uid="uid://c6eup6lm5fu2a" path="res://Scripts/MonsterAttacks/Sloth/TendrilStrike.tres" id="4_g503l"]
+[ext_resource type="Resource" uid="uid://b87rwnfal1e1q" path="res://Scripts/MonsterAttacks/Sloth/SlothHeal.tres" id="5_151ix"]
+[ext_resource type="Resource" uid="uid://mv34x2cr6n6b" path="res://Scripts/MonsterAttacks/Sloth/LashOut.tres" id="6_ty40d"]
+[ext_resource type="PackedScene" uid="uid://bab7ai1tdyxnn" path="res://Scenes/player/CharacterSkills.tscn" id="7_2i6l5"]
+[ext_resource type="Resource" uid="uid://cbjoa7ka7csxo" path="res://Scripts/MonsterGear/SlothTendrils.tres" id="8_e2bog"]
+[ext_resource type="Resource" uid="uid://k1e4qhl6q6mh" path="res://Scripts/Items/standardPotion.tres" id="9_ppkbd"]
+[ext_resource type="PackedScene" uid="uid://cr281y5hhfmm4" path="res://Scenes/player/char_item.tscn" id="10_dia1c"]
+[ext_resource type="PackedScene" uid="uid://dv5f586jxrduu" path="res://Scenes/player/Weapons.tscn" id="11_atpkl"]
+[ext_resource type="Texture2D" uid="uid://0o0dap444rbi" path="res://resources/monsters/ancient_zyme.png" id="12_071aq"]
+[ext_resource type="Script" path="res://Scripts/MonsterDrops/SlothDrops.gd" id="13_6dcpm"]
+[ext_resource type="Script" path="res://Scripts/Combat/Actions.gd" id="14_2uo56"]
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_dk5vd"]
+bg_color = Color(0.262745, 0.635294, 0.878431, 1)
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_4vmmf"]
+bg_color = Color(0.929412, 0, 0.109804, 1)
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_bq56t"]
+bg_color = Color(0, 0.917647, 0, 1)
+
+[node name="Sloth" type="Node2D"]
+script = ExtResource("1_w3x7k")
+monName = "Sloth"
+
+[node name="Job" parent="." instance=ExtResource("2_2ik1m")]
+startingStats = ExtResource("3_etx0q")
+StartingSkills = [ExtResource("4_g503l"), ExtResource("5_151ix"), ExtResource("6_ty40d")]
+characterSkillScene = ExtResource("7_2i6l5")
+equipedWep = ExtResource("8_e2bog")
+equipedItem = ExtResource("9_ppkbd")
+itemScene = ExtResource("10_dia1c")
+
+[node name="CharacterSkill" parent="." instance=ExtResource("7_2i6l5")]
+
+[node name="equips" parent="." instance=ExtResource("11_atpkl")]
+
+[node name="AbominationLarge" type="Sprite2D" parent="."]
+position = Vector2(72, -63)
+scale = Vector2(4.375, 4.0625)
+texture = ExtResource("12_071aq")
+
+[node name="Bars" type="MenuBar" parent="."]
+offset_left = 19.0
+offset_top = -180.0
+offset_right = 113.0
+offset_bottom = -140.0
+
+[node name="MP" type="ProgressBar" parent="Bars"]
+custom_minimum_size = Vector2(0, 5)
+layout_mode = 0
+offset_left = 15.0
+offset_top = 33.0
+offset_right = 78.0
+offset_bottom = 38.0
+theme_override_styles/fill = SubResource("StyleBoxFlat_dk5vd")
+value = 100.0
+show_percentage = false
+
+[node name="HP" type="ProgressBar" parent="Bars"]
+custom_minimum_size = Vector2(0, 5)
+layout_mode = 0
+offset_left = -19.0
+offset_top = 30.0
+offset_right = 126.0
+offset_bottom = 43.0
+theme_override_styles/background = SubResource("StyleBoxFlat_4vmmf")
+theme_override_styles/fill = SubResource("StyleBoxFlat_bq56t")
+max_value = 200.0
+value = 200.0
+show_percentage = false
+
+[node name="Drops" type="Node" parent="."]
+script = ExtResource("13_6dcpm")
+
+[node name="Actions" type="Node" parent="."]
+script = ExtResource("14_2uo56")
+skill_action_scene = ExtResource("7_2i6l5")
+
+[connection signal="died" from="." to="Drops" method="_on_reaper_died"]

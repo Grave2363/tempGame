@@ -1,0 +1,83 @@
+[gd_scene load_steps=17 format=3 uid="uid://d0apohrou1efn"]
+
+[ext_resource type="Script" path="res://Scripts/Combat/BaseFighter_monster.gd" id="1_lneu2"]
+[ext_resource type="PackedScene" uid="uid://de3mo8qfb1lge" path="res://Scenes/shared/Job.tscn" id="2_x7giv"]
+[ext_resource type="Resource" uid="uid://cq1x86hodlixw" path="res://Scripts/monsterJobs/Slug.tres" id="3_yg7ys"]
+[ext_resource type="Resource" uid="uid://k778hs4y64no" path="res://Scripts/MonsterAttacks/Slug/RollingSlam.tres" id="4_t2qom"]
+[ext_resource type="Resource" uid="uid://dg7p288pkm3bm" path="res://Scripts/MonsterAttacks/Slug/MendingSlime.tres" id="5_cgx53"]
+[ext_resource type="PackedScene" uid="uid://bab7ai1tdyxnn" path="res://Scenes/player/CharacterSkills.tscn" id="6_1mrve"]
+[ext_resource type="Resource" uid="uid://wcolp0j35qia" path="res://Scripts/MonsterGear/SlugWep.tres" id="7_8d247"]
+[ext_resource type="Resource" uid="uid://k1e4qhl6q6mh" path="res://Scripts/Items/standardPotion.tres" id="8_2jhg6"]
+[ext_resource type="PackedScene" uid="uid://cr281y5hhfmm4" path="res://Scenes/player/char_item.tscn" id="9_q7kkv"]
+[ext_resource type="PackedScene" uid="uid://dv5f586jxrduu" path="res://Scenes/player/Weapons.tscn" id="10_jvpvj"]
+[ext_resource type="Texture2D" uid="uid://cdjgq0ow4k7oy" path="res://resources/monsters/gastronok_new.png" id="11_5raty"]
+[ext_resource type="Script" path="res://Scripts/MonsterDrops/SlugDrops.gd" id="12_a2osu"]
+[ext_resource type="Script" path="res://Scripts/Combat/Actions.gd" id="13_liipr"]
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_dk5vd"]
+bg_color = Color(0.262745, 0.635294, 0.878431, 1)
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_4vmmf"]
+bg_color = Color(0.929412, 0, 0.109804, 1)
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_bq56t"]
+bg_color = Color(0, 0.917647, 0, 1)
+
+[node name="Slug" type="Node2D"]
+script = ExtResource("1_lneu2")
+monName = "Slug"
+
+[node name="Job" parent="." instance=ExtResource("2_x7giv")]
+startingStats = ExtResource("3_yg7ys")
+StartingSkills = [ExtResource("4_t2qom"), ExtResource("5_cgx53")]
+characterSkillScene = ExtResource("6_1mrve")
+equipedWep = ExtResource("7_8d247")
+equipedItem = ExtResource("8_2jhg6")
+itemScene = ExtResource("9_q7kkv")
+
+[node name="CharacterSkill" parent="." instance=ExtResource("6_1mrve")]
+
+[node name="equips" parent="." instance=ExtResource("10_jvpvj")]
+
+[node name="GastronokNew" type="Sprite2D" parent="."]
+position = Vector2(49, -32)
+scale = Vector2(2.9375, 2.875)
+texture = ExtResource("11_5raty")
+
+[node name="Bars" type="MenuBar" parent="."]
+offset_top = -106.0
+offset_right = 94.0
+offset_bottom = -66.0
+
+[node name="MP" type="ProgressBar" parent="Bars"]
+custom_minimum_size = Vector2(0, 5)
+layout_mode = 0
+offset_left = 4.0
+offset_top = 21.0
+offset_right = 67.0
+offset_bottom = 26.0
+theme_override_styles/fill = SubResource("StyleBoxFlat_dk5vd")
+value = 100.0
+show_percentage = false
+
+[node name="HP" type="ProgressBar" parent="Bars"]
+custom_minimum_size = Vector2(0, 5)
+layout_mode = 0
+offset_left = 2.0
+offset_top = 21.0
+offset_right = 68.0
+offset_bottom = 26.0
+theme_override_styles/background = SubResource("StyleBoxFlat_4vmmf")
+theme_override_styles/fill = SubResource("StyleBoxFlat_bq56t")
+max_value = 30.0
+value = 30.0
+show_percentage = false
+
+[node name="Drops" type="Node" parent="."]
+script = ExtResource("12_a2osu")
+
+[node name="Actions" type="Node" parent="."]
+script = ExtResource("13_liipr")
+skill_action_scene = ExtResource("6_1mrve")
+
+[connection signal="died" from="." to="Drops" method="_on_slug_died"]

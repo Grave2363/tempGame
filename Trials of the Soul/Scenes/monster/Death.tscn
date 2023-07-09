@@ -1,0 +1,85 @@
+[gd_scene load_steps=18 format=3 uid="uid://cgbrrx5fgny8p"]
+
+[ext_resource type="Script" path="res://Scripts/Combat/BaseFighter_monster.gd" id="1_8hefr"]
+[ext_resource type="PackedScene" uid="uid://de3mo8qfb1lge" path="res://Scenes/shared/Job.tscn" id="2_6m0ih"]
+[ext_resource type="Resource" uid="uid://dcet7svkuj3sv" path="res://Scripts/monsterJobs/Reaper.tres" id="3_ponmf"]
+[ext_resource type="Resource" uid="uid://oaeprbtxv4ix" path="res://Scripts/MonsterAttacks/Reaper/ScytheStrike.tres" id="4_4wage"]
+[ext_resource type="Resource" uid="uid://dd8ohkoidtat0" path="res://Scripts/MonsterAttacks/Reaper/SoulHarvest.tres" id="5_4qlh0"]
+[ext_resource type="PackedScene" uid="uid://bab7ai1tdyxnn" path="res://Scenes/player/CharacterSkills.tscn" id="6_el6h3"]
+[ext_resource type="Resource" uid="uid://bnt7lpm5bv7hd" path="res://Scripts/MonsterAttacks/Reaper/Dark Spikes.tres" id="6_shq0s"]
+[ext_resource type="Resource" uid="uid://c2bkyish7mtuy" path="res://Scripts/MonsterGear/ReaperScythe.tres" id="7_e78rk"]
+[ext_resource type="Resource" uid="uid://k1e4qhl6q6mh" path="res://Scripts/Items/standardPotion.tres" id="8_bxus7"]
+[ext_resource type="PackedScene" uid="uid://cr281y5hhfmm4" path="res://Scenes/player/char_item.tscn" id="9_4pwre"]
+[ext_resource type="PackedScene" uid="uid://dv5f586jxrduu" path="res://Scenes/player/Weapons.tscn" id="10_ir1j1"]
+[ext_resource type="Texture2D" uid="uid://dr8a0nydx8oyf" path="res://resources/monsters/reaper_new.png" id="11_us6xy"]
+[ext_resource type="Script" path="res://Scripts/MonsterDrops/ReaperDrops.gd" id="12_tvdvn"]
+[ext_resource type="Script" path="res://Scripts/Combat/Actions.gd" id="13_3yr6b"]
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_dk5vd"]
+bg_color = Color(0.262745, 0.635294, 0.878431, 1)
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_4vmmf"]
+bg_color = Color(0.929412, 0, 0.109804, 1)
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_bq56t"]
+bg_color = Color(0, 0.917647, 0, 1)
+
+[node name="Reaper" type="Node2D"]
+script = ExtResource("1_8hefr")
+monName = "Reaper"
+
+[node name="Job" parent="." instance=ExtResource("2_6m0ih")]
+startingStats = ExtResource("3_ponmf")
+StartingSkills = [ExtResource("4_4wage"), ExtResource("5_4qlh0"), ExtResource("6_shq0s")]
+characterSkillScene = ExtResource("6_el6h3")
+equipedWep = ExtResource("7_e78rk")
+equipedItem = ExtResource("8_bxus7")
+itemScene = ExtResource("9_4pwre")
+
+[node name="CharacterSkill" parent="." instance=ExtResource("6_el6h3")]
+
+[node name="equips" parent="." instance=ExtResource("10_ir1j1")]
+
+[node name="AbominationLarge" type="Sprite2D" parent="."]
+position = Vector2(72, -63)
+scale = Vector2(4.375, 4.0625)
+texture = ExtResource("11_us6xy")
+
+[node name="Bars" type="MenuBar" parent="."]
+offset_left = 19.0
+offset_top = -180.0
+offset_right = 113.0
+offset_bottom = -140.0
+
+[node name="MP" type="ProgressBar" parent="Bars"]
+custom_minimum_size = Vector2(0, 5)
+layout_mode = 0
+offset_left = 15.0
+offset_top = 33.0
+offset_right = 78.0
+offset_bottom = 38.0
+theme_override_styles/fill = SubResource("StyleBoxFlat_dk5vd")
+value = 100.0
+show_percentage = false
+
+[node name="HP" type="ProgressBar" parent="Bars"]
+custom_minimum_size = Vector2(0, 5)
+layout_mode = 0
+offset_left = -19.0
+offset_top = 30.0
+offset_right = 126.0
+offset_bottom = 43.0
+theme_override_styles/background = SubResource("StyleBoxFlat_4vmmf")
+theme_override_styles/fill = SubResource("StyleBoxFlat_bq56t")
+max_value = 200.0
+value = 200.0
+show_percentage = false
+
+[node name="Drops" type="Node" parent="."]
+script = ExtResource("12_tvdvn")
+
+[node name="Actions" type="Node" parent="."]
+script = ExtResource("13_3yr6b")
+skill_action_scene = ExtResource("6_el6h3")
+
+[connection signal="died" from="." to="Drops" method="_on_reaper_died"]

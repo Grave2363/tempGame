@@ -1,0 +1,79 @@
+[gd_scene load_steps=17 format=3 uid="uid://bm125xxrh71gi"]
+
+[ext_resource type="Script" path="res://Scripts/Combat/BaseFighter.gd" id="1_dw2s2"]
+[ext_resource type="Resource" uid="uid://k1e4qhl6q6mh" path="res://Scripts/Items/standardPotion.tres" id="2_m3qnw"]
+[ext_resource type="PackedScene" uid="uid://de3mo8qfb1lge" path="res://Scenes/shared/Job.tscn" id="2_uty1l"]
+[ext_resource type="Resource" uid="uid://gfulb6nckr8w" path="res://Scripts/Combat/Crusader.tres" id="3_702vf"]
+[ext_resource type="PackedScene" uid="uid://cr281y5hhfmm4" path="res://Scenes/player/char_item.tscn" id="4_73bf3"]
+[ext_resource type="Texture2D" uid="uid://c8qdkoekpcsys" path="res://resources/player/warrior_m_walking_right.png" id="4_fy6t1"]
+[ext_resource type="Resource" uid="uid://cri7rojoowood" path="res://Scripts/skills/Slash.tres" id="4_k3a7l"]
+[ext_resource type="Resource" uid="uid://bb0clwfeudf15" path="res://Scripts/weps/Sword.tres" id="5_620x0"]
+[ext_resource type="PackedScene" uid="uid://bab7ai1tdyxnn" path="res://Scenes/player/CharacterSkills.tscn" id="6_t4o34"]
+[ext_resource type="Resource" uid="uid://djjdmplrfmp12" path="res://Scripts/skills/Shield Bash.tres" id="7_n1mb5"]
+[ext_resource type="Script" path="res://Scripts/Combat/Actions.gd" id="7_rqdcj"]
+[ext_resource type="Resource" uid="uid://pnh8or3dfg62" path="res://Scripts/skills/Clesning Flame.tres" id="8_7hb6a"]
+[ext_resource type="Resource" uid="uid://o3o76u1w62ha" path="res://Scripts/skills/Smite.tres" id="9_in4kc"]
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_ri75v"]
+bg_color = Color(0.85098, 0.145098, 0, 1)
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_fvwt2"]
+bg_color = Color(0, 0.917647, 0, 1)
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_51g5u"]
+bg_color = Color(0.262745, 0.635294, 0.878431, 1)
+
+[node name="CombatPlayer" type="Node2D"]
+script = ExtResource("1_dw2s2")
+special_item = ExtResource("2_m3qnw")
+stats = ExtResource("3_702vf")
+
+[node name="WarriorMWalkingRight" type="Sprite2D" parent="."]
+position = Vector2(37.75, -34)
+scale = Vector2(2.40323, 2.38889)
+texture = ExtResource("4_fy6t1")
+
+[node name="CharacterSkill" parent="." instance=ExtResource("6_t4o34")]
+
+[node name="Job" parent="." instance=ExtResource("2_uty1l")]
+startingStats = ExtResource("3_702vf")
+StartingSkills = [ExtResource("4_k3a7l"), ExtResource("7_n1mb5"), ExtResource("8_7hb6a"), ExtResource("9_in4kc")]
+characterSkillScene = ExtResource("6_t4o34")
+equipedWep = ExtResource("5_620x0")
+equipedItem = ExtResource("2_m3qnw")
+itemScene = ExtResource("4_73bf3")
+
+[node name="Actions" type="Node" parent="."]
+script = ExtResource("7_rqdcj")
+skill_action_scene = ExtResource("6_t4o34")
+
+[node name="Bars" type="MenuBar" parent="."]
+offset_left = 1.0
+offset_top = -114.0
+offset_right = 97.0
+offset_bottom = -74.0
+
+[node name="HP" type="ProgressBar" parent="Bars"]
+custom_minimum_size = Vector2(0, 5)
+layout_mode = 0
+offset_top = 8.0
+offset_right = 96.0
+offset_bottom = 17.0
+theme_override_styles/background = SubResource("StyleBoxFlat_ri75v")
+theme_override_styles/fill = SubResource("StyleBoxFlat_fvwt2")
+max_value = 50.0
+value = 50.0
+show_percentage = false
+
+[node name="MP" type="ProgressBar" parent="Bars"]
+custom_minimum_size = Vector2(0, 5)
+layout_mode = 0
+offset_top = 18.0
+offset_right = 96.0
+offset_bottom = 28.0
+theme_override_styles/fill = SubResource("StyleBoxFlat_51g5u")
+max_value = 10.0
+value = 10.0
+show_percentage = false
+
+[connection signal="HealthEmpty" from="Job" to="." method="_on_job_health_empty"]

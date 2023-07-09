@@ -1,0 +1,103 @@
+[gd_scene load_steps=17 format=3 uid="uid://bcdm3fohpwsbt"]
+
+[ext_resource type="Script" path="res://Scripts/Combat/BaseFighter_monster.gd" id="1_mrq6p"]
+[ext_resource type="PackedScene" uid="uid://de3mo8qfb1lge" path="res://Scenes/shared/Job.tscn" id="2_jphyn"]
+[ext_resource type="Resource" uid="uid://bamuywwfbfcos" path="res://Scripts/monsterJobs/MummyHoard.tres" id="3_pm3cr"]
+[ext_resource type="Resource" uid="uid://ccxxd6nc53jlu" path="res://Scripts/MonsterAttacks/Mummy's/BaseMummy/RancidBandages.tres" id="4_sef2n"]
+[ext_resource type="Resource" uid="uid://dcqirn3eqyayq" path="res://Scripts/MonsterAttacks/Mummy's/BaseMummy/RottingClaws.tres" id="5_s2eo8"]
+[ext_resource type="PackedScene" uid="uid://bab7ai1tdyxnn" path="res://Scenes/player/CharacterSkills.tscn" id="6_kngla"]
+[ext_resource type="Resource" uid="uid://i6ocp5xtcj2f" path="res://Scripts/MonsterGear/RancidBandages.tres" id="7_mq30p"]
+[ext_resource type="Resource" uid="uid://k1e4qhl6q6mh" path="res://Scripts/Items/standardPotion.tres" id="8_qn5hs"]
+[ext_resource type="PackedScene" uid="uid://cr281y5hhfmm4" path="res://Scenes/player/char_item.tscn" id="9_ltlky"]
+[ext_resource type="PackedScene" uid="uid://dv5f586jxrduu" path="res://Scenes/player/Weapons.tscn" id="10_vvhtx"]
+[ext_resource type="Texture2D" uid="uid://suyvroo0sk5l" path="res://resources/monsters/mummy.png" id="11_vvcak"]
+[ext_resource type="Script" path="res://Scripts/MonsterDrops/MummyDrops.gd" id="12_bbm14"]
+[ext_resource type="Script" path="res://Scripts/Combat/Actions.gd" id="13_26tfj"]
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_dk5vd"]
+bg_color = Color(0.262745, 0.635294, 0.878431, 1)
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_4vmmf"]
+bg_color = Color(0.929412, 0, 0.109804, 1)
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_bq56t"]
+bg_color = Color(0, 0.917647, 0, 1)
+
+[node name="MummyHoard" type="Node2D"]
+script = ExtResource("1_mrq6p")
+monName = "MummyHoard"
+
+[node name="Job" parent="." instance=ExtResource("2_jphyn")]
+startingStats = ExtResource("3_pm3cr")
+StartingSkills = [ExtResource("4_sef2n"), ExtResource("5_s2eo8")]
+characterSkillScene = ExtResource("6_kngla")
+equipedWep = ExtResource("7_mq30p")
+equipedItem = ExtResource("8_qn5hs")
+itemScene = ExtResource("9_ltlky")
+
+[node name="CharacterSkill" parent="." instance=ExtResource("6_kngla")]
+
+[node name="equips" parent="." instance=ExtResource("10_vvhtx")]
+
+[node name="AbominationLarge5" type="Sprite2D" parent="."]
+position = Vector2(19, -34)
+scale = Vector2(3, 3)
+texture = ExtResource("11_vvcak")
+
+[node name="AbominationLarge4" type="Sprite2D" parent="."]
+position = Vector2(61, -50)
+scale = Vector2(3, 3)
+texture = ExtResource("11_vvcak")
+
+[node name="AbominationLarge2" type="Sprite2D" parent="."]
+position = Vector2(42, -49)
+scale = Vector2(3, 3)
+texture = ExtResource("11_vvcak")
+
+[node name="AbominationLarge3" type="Sprite2D" parent="."]
+position = Vector2(76, -34)
+scale = Vector2(3, 3)
+texture = ExtResource("11_vvcak")
+
+[node name="AbominationLarge" type="Sprite2D" parent="."]
+position = Vector2(38, -34)
+scale = Vector2(3, 3)
+texture = ExtResource("11_vvcak")
+
+[node name="Bars" type="MenuBar" parent="."]
+offset_top = -106.0
+offset_right = 94.0
+offset_bottom = -66.0
+
+[node name="MP" type="ProgressBar" parent="Bars"]
+custom_minimum_size = Vector2(0, 5)
+layout_mode = 0
+offset_left = 4.0
+offset_top = 21.0
+offset_right = 67.0
+offset_bottom = 26.0
+theme_override_styles/fill = SubResource("StyleBoxFlat_dk5vd")
+value = 100.0
+show_percentage = false
+
+[node name="HP" type="ProgressBar" parent="Bars"]
+custom_minimum_size = Vector2(0, 5)
+layout_mode = 0
+offset_left = 2.0
+offset_top = 21.0
+offset_right = 68.0
+offset_bottom = 26.0
+theme_override_styles/background = SubResource("StyleBoxFlat_4vmmf")
+theme_override_styles/fill = SubResource("StyleBoxFlat_bq56t")
+max_value = 30.0
+value = 30.0
+show_percentage = false
+
+[node name="Drops" type="Node" parent="."]
+script = ExtResource("12_bbm14")
+
+[node name="Actions" type="Node" parent="."]
+script = ExtResource("13_26tfj")
+skill_action_scene = ExtResource("6_kngla")
+
+[connection signal="died" from="." to="Drops" method="_on_mummy_died"]

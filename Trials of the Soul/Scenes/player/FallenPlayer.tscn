@@ -1,0 +1,19 @@
+[gd_scene load_steps=4 format=3]
+
+[ext_resource type="Script" path="res://Scripts/player.gd" id="1_0ldu8"]
+[ext_resource type="Texture2D" uid="uid://c8qdkoekpcsys" path="res://resources/player/warrior_m_walking_right.png" id="2_m4k3e"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_jqu52"]
+size = Vector2(20, 26)
+
+[node name="Player" type="CharacterBody2D"]
+script = ExtResource("1_0ldu8")
+
+[node name="WarriorMWalkingRight" type="Sprite2D" parent="."]
+position = Vector2(11, -13)
+scale = Vector2(0.693548, 0.722222)
+texture = ExtResource("2_m4k3e")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+position = Vector2(13, -13)
+shape = SubResource("RectangleShape2D_jqu52")

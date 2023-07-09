@@ -1,0 +1,48 @@
+[gd_scene load_steps=3 format=3 uid="uid://d0rlv37jjwmm"]
+
+[ext_resource type="Script" path="res://Scripts/GameOver.gd" id="1_4m7gx"]
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_di6wx"]
+bg_color = Color(0, 0, 0, 1)
+
+[node name="GameOver" type="Node2D"]
+script = ExtResource("1_4m7gx")
+
+[node name="Camera2D" type="Camera2D" parent="."]
+zoom = Vector2(3, 3)
+
+[node name="Panel" type="Panel" parent="."]
+offset_left = -194.0
+offset_top = -112.0
+offset_right = 194.0
+offset_bottom = 109.0
+theme_override_styles/panel = SubResource("StyleBoxFlat_di6wx")
+
+[node name="Label" type="Label" parent="."]
+offset_left = -171.0
+offset_top = -88.0
+offset_right = 172.0
+offset_bottom = -2.0
+theme_override_colors/font_color = Color(1, 0, 0, 1)
+theme_override_font_sizes/font_size = 60
+text = "Game Over"
+horizontal_alignment = 1
+vertical_alignment = 1
+uppercase = true
+
+[node name="Continue" type="Button" parent="."]
+offset_left = -113.0
+offset_top = 36.0
+offset_right = -27.0
+offset_bottom = 67.0
+text = "Continue?"
+
+[node name="Quit" type="Button" parent="."]
+offset_left = 35.0
+offset_top = 38.0
+offset_right = 111.0
+offset_bottom = 69.0
+text = "Give Up?"
+
+[connection signal="pressed" from="Continue" to="." method="_on_continue_pressed"]
+[connection signal="pressed" from="Quit" to="." method="_on_quit_pressed"]

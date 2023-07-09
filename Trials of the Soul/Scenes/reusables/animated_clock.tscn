@@ -1,0 +1,37 @@
+[gd_scene load_steps=6 format=3 uid="uid://ih6ipqkwy7sq"]
+
+[ext_resource type="Texture2D" uid="uid://7jca3270wj0" path="res://resources/items/clock0.png" id="1_xn84v"]
+[ext_resource type="Texture2D" uid="uid://cr2da0kxtx2t" path="res://resources/items/clock1.png" id="2_eol6a"]
+[ext_resource type="Texture2D" uid="uid://c5iidwce2kqd3" path="res://resources/items/clock2.png" id="3_b6utw"]
+
+[sub_resource type="Animation" id="Animation_7il0r"]
+resource_name = "new_animation"
+length = 1.2
+loop_mode = 1
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_bydhx"]
+_data = {
+"new_animation": SubResource("Animation_7il0r")
+}
+
+[node name="animatedClock" type="Sprite2D"]
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="."]
+autoplay = "new_animation"
+libraries = {
+"": SubResource("AnimationLibrary_bydhx")
+}
+
+[node name="Clock0" type="Sprite2D" parent="AnimationPlayer"]
+position = Vector2(100, -47)
+texture = ExtResource("1_xn84v")
+
+[node name="Clock1" type="Sprite2D" parent="AnimationPlayer"]
+visible = false
+position = Vector2(100, -47)
+texture = ExtResource("2_eol6a")
+
+[node name="Clock2" type="Sprite2D" parent="AnimationPlayer"]
+visible = false
+position = Vector2(100, -47)
+texture = ExtResource("3_b6utw")
